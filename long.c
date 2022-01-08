@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:57:11 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/07 18:26:52 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/08 19:25:11 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,21 @@ void	so_long(char	*map_path)
 		exit(2);
 	}
 	map = read_map(fd, &data);
+	data.map = map;
 	if (map && verify_map(&map, &data))
 	{
 		initial_connection(&data);
 		backgroud_3d3550(&data);
-		//darw_grid(&data);
+		//draw_grid(&data);
+		//front_idle(&data);
+		draw_map(&data, map);
 		mlx_hook(data.mlx_win, 2, 0, key_hook, &data);
 		mlx_hook(data.mlx_win, 3, 0, key_hook_stop, &data);
-		draw_map(&data, map);
 		mlx_loop(data.mlx_ptr);
-		free(map);
 	}
 	else
 		printf("Wrong Map");
+	free(map);
 }
 
 int	main(int argc, char *argv[])

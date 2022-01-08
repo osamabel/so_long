@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 17:11:13 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/07 17:19:09 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/08 17:38:25 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ int	idle_left(t_data *data)
 	else if (frams < FRAMS && i == 3)
 		draw_position(data, &i, &frams, "saitama/left_idle2.xpm");
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img, 74, 74);
+	draw_coupon(data);
 	return (0);
 }

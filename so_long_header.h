@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 09:24:39 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/07 18:28:19 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/08 16:35:40 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,19 @@
 
 #define BUFFER_SIZE 30
 #define BLOCK 74
-#define FRAMS 13
+#define FRAMS 10
+
+typedef struct s_point{
+	int		x;
+	int		y;
+}	t_point;
 
 typedef struct s_data{
 	void 	*mlx_ptr;
 	void 	*mlx_win;
 	void 	*img;
 	char 	*addr;
+	char	*map;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -37,6 +43,8 @@ typedef struct s_data{
 	int		Y_block;
 	int		x;
 	int		y;
+	int		i;
+	int		j;
 }	t_data;
 
 //GET NEXT LINE
@@ -92,4 +100,13 @@ void	draw_position(t_data *data, int *i, int *frams, char *path);
 
 // GRID
 void	draw_grid(t_data *data);
+
+//DRAW ITEMS
+int	draw_items(t_data *data, char c, int x, int y);
+
+//DRAW COUPON
+int		draw_coupon(t_data *data);
+void	get_next_collectibale(t_data *data);
+
+int	key_hook_coupon(int keycode, t_data *data);
 #endif

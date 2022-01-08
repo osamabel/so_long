@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*   so_long_verify_map.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 21:03:46 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/07 18:21:53 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/07 18:59:06 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,32 @@ int	verify_map_body(t_data *data, char **map, int x, int y)
 	return (1);
 }
 
+int	check_pce(t_data *data, char c, int y)
+{
+	static int	person;
+	static int	collectibale;
+	static int	exit_game;
+
+	if (c == 'P')
+		person++;
+	if (c == 'C')
+		collectibale++;
+	if (c == 'E')
+		exit_game++;
+	if (person > 1)
+		return (0);
+	if (collectibale == 0 && y == data->Y_block - 1)
+		return (0);
+	if (exit_game == 0 && y == data->Y_block - 1)
+		return (0);
+	return (1);
+}
+
 int	verify_map(char	**map, t_data *data)
 {
 	int	x;
 	int	y;
-	int	person;
 
-	person = 0;
 	x = 0;
 	y = 0;
 	while (y < data->Y_block)
@@ -44,9 +63,8 @@ int	verify_map(char	**map, t_data *data)
 				return (0);
 			if (!verify_map_body(data, map, x, y))
 				return (0);
-			if (x++ && *(*map + x) == 'P')
-				person++;
-			if (person > 1)
+			x++;
+			if (!check_pce(data, *(*map + x), y))
 				return (0);
 		}
 		x++;
