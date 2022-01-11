@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:57:11 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/08 19:25:11 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/10 17:10:04 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,44 @@ void	so_long(char	*map_path)
 	char	*map;
 	t_data	data;
 
-	 fd = open(map_path, O_RDONLY);
+// iniitial;
+	data.person = 0;
+	data.collectibles = 0;
+	data.exit_games = 0;
+	data.box = 0;
+	data.x = 0;
+	data.y = 0;
+	data.i = 0;
+	data.j = 0;
+
+	int i;
+	i = 0;
+	fd = open(map_path, O_RDONLY);
 	if (fd == -1)
 	{
 		perror(map_path);
 		exit(2);
 	}
 	map = read_map(fd, &data);
-	data.map = map;
-	if (map && verify_map(&map, &data))
+	data.map = ft_split(map, '\n');
+	if (map && verify_map(&data))
 	{
 		initial_connection(&data);
 		backgroud_3d3550(&data);
 		//draw_grid(&data);
 		//front_idle(&data);
-		draw_map(&data, map);
+		draw_map(&data);
 		mlx_hook(data.mlx_win, 2, 0, key_hook, &data);
 		mlx_hook(data.mlx_win, 3, 0, key_hook_stop, &data);
+
+		printf("data.prsoX >> %i\n", data.person_axes[0].y);
+		printf("data.box >> %i\n", data.box);
+		while (i < 26)
+		{
+			printf("%i -> = %i , %i\n", i,data.box_axes[i].x, data.box_axes[i].y);
+			i++;
+		}
+
 		mlx_loop(data.mlx_ptr);
 	}
 	else
