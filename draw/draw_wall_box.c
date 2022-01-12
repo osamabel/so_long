@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 16:37:13 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/11 13:39:36 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/12 16:11:12 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	draw_wall_box(t_data *data)
 {
 	static int	i;
 	static int	frams;
-	int	j;
+	int			j;
 
 	j = 0;
 	if (frams < FRAMS && i == 0)
@@ -29,7 +29,8 @@ int	draw_wall_box(t_data *data)
 		draw_position(data, &i, &frams, "image2/wall_box.xpm");
 	while (j < data->box)
 	{
-		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img, data->box_axes[j].x, data->box_axes[j].y);
+		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img, \
+		data->box_axes[j].x, data->box_axes[j].y);
 		j++;
 	}
 	return (0);

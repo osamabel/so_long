@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 09:24:39 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/11 16:03:58 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/12 19:16:16 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,22 @@
 #define BUFFER_SIZE 30
 #define BLOCK 74
 #define FRAMS 10
+#define SPEED 4
 
 typedef struct s_point{
 	int		x;
 	int		y;
 }	t_point;
+
+typedef struct s_next_block{
+	int	next_x;
+	int	next_y;
+	int	next_x_min;
+	int	next_x_max;
+	int	next_y_min;
+	int	next_y_max;
+	int	boolen;
+}	t_next_block;
 
 typedef struct s_data{
 	void 	*mlx_ptr;
@@ -55,8 +66,10 @@ typedef struct s_data{
 	int		box;
 	t_point	*person_axes;
 	t_point	*collectibles_axes;
+	t_point	*collectibles_taken_axes;
 	t_point	*exit_games_axes;
 	t_point	*box_axes;
+	t_next_block	*next_block;
 }	t_data;
 
 //GET NEXT LINE
@@ -138,4 +151,17 @@ int		draw_exit(t_data *data);
 int		loop_items(t_data *data);
 void	block_3d3550(t_data *data);
 int	key_hook1(int keycode, t_data *data);
+
+
+
+int	check_box_up(t_data *data);
+int	check_box_right(t_data *data);
+int	check_box_left(t_data *data);
+int	check_box_down(t_data *data);
+void update_block(t_data *data, int speedx, int speedy , int block);
+void	str_to_split_utils(char *str, int *i, int *j, char c);
+void	peson_xy(t_data *data, int x, int y);
+void	collectibes_xy(t_data *data, int x, int y);
+void	box_xy(t_data *data, int x, int y);
+void	exit_xy(t_data *data, int x, int y);
 #endif

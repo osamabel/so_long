@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 17:12:06 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/11 13:51:01 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/12 16:56:07 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	back_idle(t_data *data)
 		draw_position(data, &i, &frams, "saitama55/back_idle3.xpm");
 	else if (frams < FRAMS && i == 3)
 		draw_position(data, &i, &frams, "saitama55/back_idle2.xpm");
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img, data->person_axes[0].x, data->person_axes[0].y);
+	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img, \
+	data->person_axes[0].x, data->person_axes[0].y);
 	return (0);
 }

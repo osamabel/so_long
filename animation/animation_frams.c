@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 17:09:29 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/10 11:03:32 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/12 16:55:46 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,4 @@ void	draw_position(t_data *data, int *i, int *frams, char *path)
 	}
 	if (*i == 4)
 		*i = 0;
-	//block_3d3550(data);
 }

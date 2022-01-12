@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:24:09 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/11 16:55:05 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/12 16:34:56 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	initial_connection(t_data *data)
 	data->x = 0;
 	data->y = 0;
 	data->mlx_ptr = mlx_init();
-	data->mlx_win = mlx_new_window(data->mlx_ptr ,data->widht, \
+	data->mlx_win = mlx_new_window(data->mlx_ptr, data->widht, \
 	data->height, "game");
 	data->img = mlx_new_image(data->mlx_ptr, data->widht, data->height);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, \

@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:57:11 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/10 17:10:04 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/12 19:34:07 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,19 @@ void	so_long(char	*map_path)
 	{
 		initial_connection(&data);
 		backgroud_3d3550(&data);
-		//draw_grid(&data);
+		// draw_grid(&data);
 		//front_idle(&data);
 		draw_map(&data);
 		mlx_hook(data.mlx_win, 2, 0, key_hook, &data);
 		mlx_hook(data.mlx_win, 3, 0, key_hook_stop, &data);
-
 		printf("data.prsoX >> %i\n", data.person_axes[0].y);
 		printf("data.box >> %i\n", data.box);
-		while (i < 26)
+		while (i < data.collectibles)
 		{
-			printf("%i -> = %i , %i\n", i,data.box_axes[i].x, data.box_axes[i].y);
+			printf("%i -> = %i , %i\n", i,data.collectibles_axes[i].x, data.collectibles_axes[i].y);
 			i++;
 		}
+
 
 		mlx_loop(data.mlx_ptr);
 	}

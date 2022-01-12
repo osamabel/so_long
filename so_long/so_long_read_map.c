@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:19:53 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/09 18:07:16 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/12 16:49:07 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,8 @@ char	**str_to_split(char **result, char *str, char c)
 	word = 0;
 	while (str[i])
 	{
-		while (str[i] && str[i] == c)
-			i++;
-		j = i;
-		while (str[j] && str[j] != c)
-			j++;
-		if (i < j) // j = 13 i = 0
+		str_to_split_utils(str, &i, &j, c);
+		if (i < j)
 		{
 			result[word] = (char *)malloc((j - i) * sizeof(char));
 			if (spliting_problem(result, word))
@@ -93,9 +89,7 @@ char	**str_to_split(char **result, char *str, char c)
 			ft_strncpy(result[word++], str + i, j - i);
 		}
 		if (word <= wc)
-		{
 			result[word - 1][j - i] = '\0';
-		}
 		i = j;
 	}
 	result[word] = 0;
