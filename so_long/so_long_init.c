@@ -6,11 +6,11 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:24:09 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/12 16:34:56 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/15 11:55:29 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_header.h"
+#include "../so_long_header.h"
 
 void	initial_connection(t_data *data)
 {

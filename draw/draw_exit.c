@@ -6,13 +6,27 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 11:44:36 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/12 16:09:41 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/18 16:46:10 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_header.h"
+#include "../so_long_header.h"
 
-int	draw_exit(t_data *data)
+int	draw_exit_befor(t_data *data)
+{
+	int	j;
+
+	j = 0;
+	data->img = mlx_xpm_file_to_image(data->mlx_ptr, "image/exit/exit.xpm", &data->x, &data->y);
+	while (j < data->exit_games)
+	{
+		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img, data->exit_games_axes[j].x, data->exit_games_axes[j].y);
+		j++;
+	}
+	return (0);
+}
+
+int	draw_exit_after(t_data *data)
 {
 	static int	i;
 	static int	frams;
@@ -20,17 +34,16 @@ int	draw_exit(t_data *data)
 
 	j = 0;
 	if (frams < FRAMS && i == 0)
-		draw_position(data, &i, &frams, "coupon/coupons1.xpm");
+		draw_position(data, &i, &frams, "image/exit/exit1.xpm");
 	else if (frams < FRAMS && i == 1)
-		draw_position(data, &i, &frams, "coupon/coupons2.xpm");
+		draw_position(data, &i, &frams, "image/exit/exit2.xpm");
 	else if (frams < FRAMS && i == 2)
-		draw_position(data, &i, &frams, "coupon/coupons3.xpm");
+		draw_position(data, &i, &frams, "image/exit/exit3.xpm");
 	else if (frams < FRAMS && i == 3)
-		draw_position(data, &i, &frams, "coupon/coupons4.xpm");
-	while (j < data->collectibles)
+		draw_position(data, &i, &frams, "image/exit/exit4.xpm");
+	while (j < data->exit_games)
 	{
-		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img, \
-		data->collectibles_axes[j].x, data->collectibles_axes[j].y);
+		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img, data->exit_games_axes[j].x, data->exit_games_axes[j].y);
 		j++;
 	}
 	return (0);

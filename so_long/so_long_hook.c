@@ -6,36 +6,96 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 15:31:33 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/12 18:17:22 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/17 22:17:16 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_header.h"
+#include "../so_long_header.h"
 
-int	key_hook(int keycode, t_data *data)
+int	ft_strcmp(char *str1, char *str2)
+{
+	int	i;
+
+	i = 0;
+	while (str1[i] && str1[i] == str2[i])
+		i++;
+	return (str1[i] - str2[i]);
+}
+
+int	event_on(int keycode, t_data *data)
 {
 	if (keycode == 53)
-		exit(0);
-	if (keycode == 0)
-		mlx_loop_hook(data->mlx_ptr, check_box_left, data);
-	if (keycode == 1)
-		mlx_loop_hook(data->mlx_ptr, check_box_down, data);
-	if (keycode == 2)
-		mlx_loop_hook(data->mlx_ptr, check_box_right, data);
-	if (keycode == 13)
-		mlx_loop_hook(data->mlx_ptr, check_box_up, data);
+	{
+		free(data->arrows);
+		data->arrows = ft_strdup("exit_game");
+	}
+	else if (keycode == 0)
+	{
+		free(data->arrows);
+		data->arrows = ft_strdup("run_left");
+	}
+	else if (keycode == 1)
+	{
+		free(data->arrows);
+		data->arrows = ft_strdup("run_down");
+	}
+	else if (keycode == 2)
+	{
+		free(data->arrows);
+		data->arrows = ft_strdup("run_right");
+	}
+	else if (keycode == 13)
+	{
+		free(data->arrows);
+		data->arrows = ft_strdup("run_up");
+	}
 	return (0);
 }
 
-int	key_hook_stop(int keycode, t_data *data)
+int	event_stop(int keycode, t_data *data)
 {
 	if (keycode == 0)
-		mlx_loop_hook(data->mlx_ptr, idle_left, data);
-	if (keycode == 1)
-		mlx_loop_hook(data->mlx_ptr, front_idle, data);
-	if (keycode == 2)
-		mlx_loop_hook(data->mlx_ptr, idle_right, data);
-	if (keycode == 13)
-		mlx_loop_hook(data->mlx_ptr, back_idle, data);
+	{
+		free(data->arrows);
+		data->arrows = ft_strdup("idle_left");
+	}
+	else if (keycode == 1)
+	{
+		free(data->arrows);
+		data->arrows = ft_strdup("idle_down");
+	}
+	else if (keycode == 2)
+	{
+		free(data->arrows);
+		data->arrows = ft_strdup("idle_right");
+	}
+	else if (keycode == 13)
+	{
+		free(data->arrows);
+		data->arrows = ft_strdup("idle_up");
+	}
+	return (0);
+}
+
+int	key_hook(t_data *data)
+{
+	if (ft_strcmp(data->arrows ,"exit_game") == 0)
+		exit(0);
+	else if (ft_strcmp(data->arrows ,"run_left") == 0)
+		check_box_left(data);
+	else if (ft_strcmp(data->arrows ,"run_down") == 0)
+		check_box_down(data);
+	else if (ft_strcmp(data->arrows ,"run_right") == 0)
+		check_box_right(data);
+	else if (ft_strcmp(data->arrows ,"run_up") == 0)
+		check_box_up(data);
+	else if (ft_strcmp(data->arrows ,"idle_left") == 0)
+		left_idle(data);
+	else if (ft_strcmp(data->arrows ,"idle_down") == 0)
+		front_idle(data);
+	else if (ft_strcmp(data->arrows ,"idle_right") == 0)
+		right_idle(data);
+	else if (ft_strcmp(data->arrows ,"idle_up") == 0)
+		back_idle(data);
 	return (0);
 }

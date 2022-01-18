@@ -6,11 +6,11 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 15:54:26 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/12 19:33:52 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/15 19:42:22 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_header.h"
+#include "../so_long_header.h"
 
 void	draw_grid(t_data *data)
 {
@@ -25,9 +25,7 @@ void	draw_grid(t_data *data)
 		while (y <= data->height)
 		{
 			if (x % 74 == 0 || y % 74 == 0)
-			{
 				my_mlx_pixel_put(data, x, y, 0xffffff);
-			}
 			y++;
 		}
 		x++;

@@ -6,15 +6,15 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 21:03:46 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/12 16:53:23 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/17 15:41:02 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_header.h"
+#include "../so_long_header.h"
 
 int	check_items(char c)
 {
-	return (c != '1' && c != '0' && c != 'C' && c != 'P' && c != 'E');
+	return (c != '1' && c != '0' && c != 'C' && c != 'P' && c != 'E' && c != 'X');
 }
 
 int	verify_map_wall(t_data *data, int x, int y)
@@ -35,8 +35,8 @@ int	verify_map_wall(t_data *data, int x, int y)
 				data->collectibles++;
 			if (data->map[y][x] == 'E')
 				data->exit_games++;
-			if (data->map[y][x] == '1')
-				data->box++;
+			if (data->map[y][x] == 'X')
+				data->enimy++;
 		}
 	}
 	return (1);
@@ -48,11 +48,15 @@ int	verify_map(t_data *data)
 	int	y;
 
 	y = 0;
+	if (!data->map)
+		return (0);
 	while (data->map[y])
 	{
 		x = 0;
 		while (data->map[y][x])
 		{
+			if (data->map[y][x] == '1')
+				data->box++;
 			if (!verify_map_wall(data, x, y))
 				return (0);
 			x++;

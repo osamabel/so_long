@@ -6,29 +6,35 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:19:53 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/12 16:49:07 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/17 16:14:24 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_header.h"
+#include "../so_long_header.h"
 
 char	*read_map(int fd, t_data *data)
 {
 	char	*buf;
 	char	*map;
 	int		widht;
+	int		len;
+	int		len_last;
 
 	data->Y_block = 0;
 	map = NULL;
 	buf = get_next_line(fd);
 	data->X_block = check_end_of_line(buf);
+	len = ft_strlen(buf);
 	while (buf)
 	{
 		data->Y_block++;
+		len_last = ft_strlen(buf);
 		ft_strjoin(&map, &buf);
 		buf = get_next_line(fd);
 		widht = check_end_of_line(buf);
 		if (data->X_block != widht && buf)
+			return (0);
+		if (!buf && len != len_last + 1)
 			return (0);
 	}
 	return (map);
@@ -78,12 +84,12 @@ char	**str_to_split(char **result, char *str, char c)
 	j = 0;
 	wc = wcount(str, c);
 	word = 0;
-	while (str[i])
+	while (str[i] && wc)
 	{
 		str_to_split_utils(str, &i, &j, c);
 		if (i < j)
 		{
-			result[word] = (char *)malloc((j - i) * sizeof(char));
+			result[word] = (char *)malloc((j - i + 1) * sizeof(char));
 			if (spliting_problem(result, word))
 				return (0);
 			ft_strncpy(result[word++], str + i, j - i);

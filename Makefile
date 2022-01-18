@@ -3,12 +3,12 @@ SRC1 = $(wildcard get/*c) $(wildcard so_long/*.c) $(wildcard draw/*.c) $(wildcar
 OBJ = $(SRC:.c=.o)
 CFLAGS = -Wall -Wextra -Werror -g
 NAME = long
-#MLX = libmlx.a
+# MLX = libmlx.a
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(MLX) so_long_header.h
-	gcc $(CFLAGS) -I . long.c -o $(NAME) $(SRC1) -lmlx -framework OpenGL -framework AppKit
+	gcc $(CFLAGS) -I . long.c -o $(NAME) $(SRC1) -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
 
 .c.o: so_long_header.h
 	gcc $(CFLAGS) -I . -o $@ -c $<

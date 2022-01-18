@@ -6,11 +6,29 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 14:20:15 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/03 20:50:26 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/15 11:50:26 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_header.h"
+#include "../so_long_header.h"
+
+char	*ft_strdup(char	*str)
+{
+    int i = 0;
+    char *dest;
+
+    while(str[i])
+        i++;
+    dest = malloc(sizeof(char ) * i + 1);
+    i = 0;
+    while(str[i])
+    {
+        dest[i] = str[i];
+        i++;
+    }
+    dest[i] = '\0';
+    return dest;
+}
 
 void	creat_line(char **line, char **lost, char **buffer)
 {

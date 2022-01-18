@@ -6,61 +6,52 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:57:11 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/12 19:34:07 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/17 22:15:57 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_header.h"
 
+void	initial_struct(t_data *data)
+{
+	data->person = 0;
+	data->enimy = 0;
+	data->collectibles = 0;
+	data->exit_games = 0;
+	data->box = 0;
+	data->x = 0;
+	data->y = 0;
+	data->z = 0;
+	data->arrows = ft_strdup("idle_right");
+}
+
 void	so_long(char	*map_path)
 {
 	int		fd;
-	char	*map;
 	t_data	data;
 
-// iniitial;
-	data.person = 0;
-	data.collectibles = 0;
-	data.exit_games = 0;
-	data.box = 0;
-	data.x = 0;
-	data.y = 0;
-	data.i = 0;
-	data.j = 0;
-
-	int i;
-	i = 0;
 	fd = open(map_path, O_RDONLY);
 	if (fd == -1)
 	{
 		perror(map_path);
 		exit(2);
 	}
-	map = read_map(fd, &data);
-	data.map = ft_split(map, '\n');
-	if (map && verify_map(&data))
+	initial_struct(&data);
+	data.map_str = read_map(fd, &data);
+	data.map = ft_split(data.map_str, '\n');
+	if (verify_map(&data))
 	{
 		initial_connection(&data);
+		get_data_axes(&data);
 		backgroud_3d3550(&data);
-		// draw_grid(&data);
-		//front_idle(&data);
-		draw_map(&data);
-		mlx_hook(data.mlx_win, 2, 0, key_hook, &data);
-		mlx_hook(data.mlx_win, 3, 0, key_hook_stop, &data);
-		printf("data.prsoX >> %i\n", data.person_axes[0].y);
-		printf("data.box >> %i\n", data.box);
-		while (i < data.collectibles)
-		{
-			printf("%i -> = %i , %i\n", i,data.collectibles_axes[i].x, data.collectibles_axes[i].y);
-			i++;
-		}
-
-
+		draw_wall(&data);
+		mlx_loop_hook(data.mlx_ptr, draw_map, &data);
+		mlx_hook(data.mlx_win, 2, 0, event_on, &data);
+		mlx_hook(data.mlx_win, 3, 0, event_stop, &data);
 		mlx_loop(data.mlx_ptr);
 	}
 	else
 		printf("Wrong Map");
-	free(map);
 }
 
 int	main(int argc, char *argv[])

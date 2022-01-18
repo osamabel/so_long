@@ -6,11 +6,11 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:01:26 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/12 16:37:49 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/16 16:16:37 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_header.h"
+#include "../so_long_header.h"
 
 void	update_block(t_data *data, int speedx, int speedy, int block)
 {
@@ -21,20 +21,53 @@ void	update_block(t_data *data, int speedx, int speedy, int block)
 	data->next_block->next_x_max = data->next_block->next_x;
 	data->next_block->next_y_min = data->next_block->next_y;
 	data->next_block->next_y_max = data->next_block->next_y;
-	if (!speedx && speedy < 0 && data->next_block->next_y <= block)
+	if (!speedx && speedy < 0 && data->next_block->next_y < block)
 		data->next_block->boolen = 0;
-	if (!speedx && speedy > 0 && data->next_block->next_y >= block)
+	if (!speedx && speedy > 0 && data->next_block->next_y > block)
 		data->next_block->boolen = 0;
-	if (!speedy && speedx < 0 && data->next_block->next_x <= block)
+	if (!speedy && speedx < 0 && data->next_block->next_x < block)
 		data->next_block->boolen = 0;
-	if (!speedy && speedx > 0 && data->next_block->next_x >= block)
+	if (!speedy && speedx > 0 && data->next_block->next_x > block)
 		data->next_block->boolen = 0;
-	while (data->next_block->next_x_min % BLOCK != 0)
-		data->next_block->next_x_min--;
-	while (data->next_block->next_x_max % BLOCK != 0)
-		data->next_block->next_x_max++;
-	while (data->next_block->next_y_min % BLOCK != 0)
-		data->next_block->next_y_min--;
-	while (data->next_block->next_y_max % BLOCK != 0)
-		data->next_block->next_y_max++;
+	if (data->next_block->boolen)
+	{
+		while (data->next_block->next_x_min % BLOCK != 0)
+			data->next_block->next_x_min--;
+		while (data->next_block->next_x_max % BLOCK != 0)
+			data->next_block->next_x_max++;
+		while (data->next_block->next_y_min % BLOCK != 0)
+			data->next_block->next_y_min--;
+		while (data->next_block->next_y_max % BLOCK != 0)
+			data->next_block->next_y_max++;
+	}
+}
+
+void	update_block_enimy(t_data *data, int speedx, int speedy, int block)
+{
+	data->next_block->boolen = 1;
+	data->next_block->next_x = data->enimy_axes[data->z].x + speedx;
+	data->next_block->next_y = data->enimy_axes[data->z].y + speedy;
+	data->next_block->next_x_min = data->next_block->next_x;
+	data->next_block->next_x_max = data->next_block->next_x;
+	data->next_block->next_y_min = data->next_block->next_y;
+	data->next_block->next_y_max = data->next_block->next_y;
+	if (!speedx && speedy < 0 && data->next_block->next_y < block)
+		data->next_block->boolen = 0;
+	if (!speedx && speedy > 0 && data->next_block->next_y > block)
+		data->next_block->boolen = 0;
+	if (!speedy && speedx < 0 && data->next_block->next_x < block)
+		data->next_block->boolen = 0;
+	if (!speedy && speedx > 0 && data->next_block->next_x > block)
+		data->next_block->boolen = 0;
+	if (data->next_block->boolen)
+	{
+		while (data->next_block->next_x_min % BLOCK != 0)
+			data->next_block->next_x_min--;
+		while (data->next_block->next_x_max % BLOCK != 0)
+			data->next_block->next_x_max++;
+		while (data->next_block->next_y_min % BLOCK != 0)
+			data->next_block->next_y_min--;
+		while (data->next_block->next_y_max % BLOCK != 0)
+			data->next_block->next_y_max++;
+	}
 }

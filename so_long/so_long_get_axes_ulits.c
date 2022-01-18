@@ -6,15 +6,15 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:33:00 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/12 16:34:15 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/16 17:08:26 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_header.h"
+#include "../so_long_header.h"
 
 void	peson_xy(t_data *data, int x, int y)
 {
-	data->person_axes[0].x = x * BLOCK;
+	data->person_axes[0].x = x * BLOCK + 19;
 	data->person_axes[0].y = y * BLOCK + 19;
 }
 
@@ -43,4 +43,13 @@ void	box_xy(t_data *data, int x, int y)
 	data->box_axes[b].x = x * BLOCK;
 	data->box_axes[b].y = y * BLOCK;
 	b++;
+}
+
+void	enimy_xy(t_data *data, int x, int y)
+{
+	static int	en;
+
+	data->enimy_axes[en].x = x * BLOCK + 19;
+	data->enimy_axes[en].y = y * BLOCK + 19;
+	en++;
 }
