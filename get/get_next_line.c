@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 14:20:15 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/15 11:50:26 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/18 19:40:50 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 char	*ft_strdup(char	*str)
 {
-    int i = 0;
-    char *dest;
+	int		i;
+	char	*dest;
 
-    while(str[i])
-        i++;
-    dest = malloc(sizeof(char ) * i + 1);
-    i = 0;
-    while(str[i])
-    {
-        dest[i] = str[i];
-        i++;
-    }
-    dest[i] = '\0';
-    return dest;
+	i = 0;
+	dest = malloc(sizeof(char ) * ft_strlen(str) + 1);
+	if (!dest)
+		malloc_error();
+	while (str[i])
+	{
+		dest[i] = str[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
 
 void	creat_line(char **line, char **lost, char **buffer)
@@ -87,6 +87,8 @@ char	*read_and_store(int fd, char **line, char **lost)
 	while (check == BUFFER_SIZE)
 	{
 		buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		if (!buffer)
+			malloc_error();
 		read_char = read(fd, buffer, BUFFER_SIZE);
 		if (read_char <= 0)
 		{

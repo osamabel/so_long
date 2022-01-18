@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 16:01:36 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/15 11:46:44 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/18 19:37:01 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@ int	draw_wall_box(t_data *data)
 	int	j;
 
 	j = 0;
-
-	data->img = mlx_xpm_file_to_image(data->mlx_ptr, "image/wall_box.xpm", &data->x, &data->y);
+	data->img = mlx_xpm_file_to_image(data->mlx_ptr, "image/wall_box.xpm", \
+	&data->x, &data->y);
 	while (j < data->box)
 	{
-		if (data->box_axes[j].y > 0 && data->box_axes[j].y < BLOCK * (data->Y_block - 1) && data->box_axes[j].x > 0 && data->box_axes[j].x < BLOCK * (data->X_block - 1))
-			mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img, data->box_axes[j].x, data->box_axes[j].y);
+		if (data->box_axes[j].y > 0 && data->box_axes[j].y < BLOCK * \
+		(data->Y_block - 1) && data->box_axes[j].x > 0 && data->box_axes[j].x \
+		< BLOCK * (data->X_block - 1))
+			mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img, \
+			data->box_axes[j].x, data->box_axes[j].y);
 		j++;
 	}
 	return (0);

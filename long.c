@@ -6,24 +6,11 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:57:11 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/17 22:15:57 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/18 17:19:22 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_header.h"
-
-void	initial_struct(t_data *data)
-{
-	data->person = 0;
-	data->enimy = 0;
-	data->collectibles = 0;
-	data->exit_games = 0;
-	data->box = 0;
-	data->x = 0;
-	data->y = 0;
-	data->z = 0;
-	data->arrows = ft_strdup("idle_right");
-}
 
 void	so_long(char	*map_path)
 {
@@ -51,7 +38,7 @@ void	so_long(char	*map_path)
 		mlx_loop(data.mlx_ptr);
 	}
 	else
-		printf("Wrong Map");
+		printf("Wrong Map !");
 }
 
 int	main(int argc, char *argv[])

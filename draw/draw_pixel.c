@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:21:47 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/18 14:03:07 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/18 19:34:45 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
+
 	if (x < 0 || x >= data->widht || y < 0 || y >= data->height)
 		return ;
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));

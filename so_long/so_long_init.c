@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 18:24:09 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/15 11:55:29 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/18 17:57:19 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,17 @@ void	initial_connection(t_data *data)
 	data->img = mlx_new_image(data->mlx_ptr, data->widht, data->height);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
 	&data->line_length, &data->endian);
+}
+
+void	initial_struct(t_data *data)
+{
+	data->person = 0;
+	data->enimy = 0;
+	data->collectibles = 0;
+	data->exit_games = 0;
+	data->box = 0;
+	data->x = 0;
+	data->y = 0;
+	data->z = 0;
+	data->arrows = ft_strdup("idle_right");
 }

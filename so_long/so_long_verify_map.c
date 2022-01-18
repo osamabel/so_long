@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 21:03:46 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/17 15:41:02 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/18 18:00:59 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	check_items(char c)
 {
-	return (c != '1' && c != '0' && c != 'C' && c != 'P' && c != 'E' && c != 'X');
+	return (c != '1' && c != '0' && c != 'C' && c != 'P' \
+	&& c != 'E' && c != 'X');
 }
 
 int	verify_map_wall(t_data *data, int x, int y)

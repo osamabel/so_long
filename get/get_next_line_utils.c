@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 21:38:41 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/17 16:06:25 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/18 19:38:43 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ size_t	ft_strlen(const char	*str)
 	return (i);
 }
 
+void	malloc_error(void)
+{
+	write(2, "malloc error\n", 13);
+	exit(5);
+}
+
 char	*ft_strjoin(char **line, char **str)
 {
 	char	*temp;
@@ -45,10 +51,7 @@ char	*ft_strjoin(char **line, char **str)
 	{
 		*line = (char *)malloc(sizeof(char) * (ft_strlen(*str) + 1));
 		if (!*line)
-		{
-			write(2,"malloc error\n", 13);
-			exit(5);
-		}
+			malloc_error();
 		ft_strncpy(*line, *str, ft_strlen(*str) + 1);
 		free(*str);
 		*str = NULL;
@@ -59,10 +62,7 @@ char	*ft_strjoin(char **line, char **str)
 		temp = *line;
 		*line = malloc(sizeof(char) * (ft_strlen(*line) + ft_strlen(*str) + 1));
 		if (!*line)
-		{
-			write(2,"malloc error\n", 13);
-			exit(5);
-		}
+			malloc_error();
 		ft_strncpy(*line, temp, ft_strlen(temp));
 		ft_strncpy(*line + ft_strlen(temp), *str, ft_strlen(*str) + 1);
 		free(*str);

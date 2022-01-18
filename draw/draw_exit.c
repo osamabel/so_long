@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 11:44:36 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/18 16:46:10 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/18 19:20:27 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ int	draw_exit_befor(t_data *data)
 	int	j;
 
 	j = 0;
-	data->img = mlx_xpm_file_to_image(data->mlx_ptr, "image/exit/exit.xpm", &data->x, &data->y);
+	data->img = mlx_xpm_file_to_image(data->mlx_ptr, "image/exit/exit.xpm", \
+	&data->x, &data->y);
 	while (j < data->exit_games)
 	{
-		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img, data->exit_games_axes[j].x, data->exit_games_axes[j].y);
+		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img, \
+		data->exit_games_axes[j].x, data->exit_games_axes[j].y);
 		j++;
 	}
 	return (0);
@@ -43,7 +45,8 @@ int	draw_exit_after(t_data *data)
 		draw_position(data, &i, &frams, "image/exit/exit4.xpm");
 	while (j < data->exit_games)
 	{
-		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img, data->exit_games_axes[j].x, data->exit_games_axes[j].y);
+		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img, \
+		data->exit_games_axes[j].x, data->exit_games_axes[j].y);
 		j++;
 	}
 	return (0);

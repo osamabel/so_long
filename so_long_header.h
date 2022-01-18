@@ -6,24 +6,19 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 09:24:39 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/17 20:02:09 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/18 20:42:00 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_HEADER_H
 # define SO_LONG_HEADER_H
 
-
 # include<stdio.h>
 # include<fcntl.h>
 # include<stdlib.h>
-# include<string.h>
 # include<unistd.h>
 # include<mlx.h>
 
-#define S1 "saitama1"
-#define S2 "saitama2"
-#define S "saitama"
 #define BUFFER_SIZE 30
 #define BLOCK 74
 #define FRAMS 13
@@ -81,8 +76,6 @@ typedef struct s_data{
 
 //	LONG_C
 void	so_long(char	*map_path);
-void	initial_struct(t_data *data);
-
 
 //	ANIMATION_C
 void	draw_position(t_data *data, int *i, int *frams, char *path);
@@ -131,7 +124,7 @@ void	ft_strncpy(char *dest, char *src, size_t len);
 char	*ft_strjoin(char **line, char **str);
 size_t	ft_strlen(const char	*str);
 size_t	check_end_of_line(char	*buf);
-
+void	malloc_error(void);
 
 //	SO_LONG_C
 int		check_box_down(t_data *data);
@@ -150,6 +143,7 @@ int		event_on(int keycode, t_data *data);
 int		event_stop(int keycode, t_data *data);
 int		key_hook(t_data *data);
 void	initial_connection(t_data *data);
+void	initial_struct(t_data *data);
 char	*read_map(int fd, t_data *data);
 int		wcount(char const *s, char c);
 int		spliting_problem(char **result, int n);
@@ -169,5 +163,7 @@ void	left_right_enimy(t_data *data);
 void	ckeck_wall_axes(t_data *data, int X, int Y);
 void	ckeck_exit_axes(t_data *data, int X, int Y);
 void	ckeck_wall_axes(t_data *data, int X, int Y);
+void	free_game(t_data *data);
+char	*ft_itoa(int n);
 
 #endif

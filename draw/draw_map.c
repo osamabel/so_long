@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 19:38:06 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/17 22:28:45 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/18 20:50:50 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,26 @@ int	check_tacking_coll(t_data *data)
 	return (0);
 }
 
+void	end_game(t_data *data)
+{
+	int	j;
+
+	j = 0;
+	while (j < data->exit_games)
+	{
+		if (data->next_block->next_x_min == data->exit_games_axes[j].x && \
+		data->next_block->next_y_min == data->exit_games_axes[j].y)
+		{
+			if (data->arrows)
+				free(data->arrows);
+			free_game(data);
+			write(1, "WIN _ GAME\n", 11);
+			exit(1);
+		}
+		j++;
+	}
+}
+
 int	draw_map(t_data *data)
 {
 	int	j;
@@ -39,15 +59,7 @@ int	draw_map(t_data *data)
 		draw_exit_befor(data);
 	else
 	{
-		while (j < data->exit_games)
-		{
-			if (data->next_block->next_x_min == data->exit_games_axes[j].x && data->next_block->next_y_min == data->exit_games_axes[j].y)
-			{
-				free(data->arrows);
-				data->arrows = ft_strdup("exit_game");
-			}
-			j++;
-		}
+		end_game(data);
 		draw_exit_after(data);
 	}
 	return (0);
