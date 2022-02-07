@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 09:24:39 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/01/18 20:42:00 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/01/19 22:57:31 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 # include<unistd.h>
 # include<mlx.h>
 
-#define BUFFER_SIZE 30
-#define BLOCK 74
-#define FRAMS 13
-#define SPEED 4
+# define BUFFER_SIZE 30
+# define BLOCK 74
+# define FRAMS 10
+# define SPEED 4
 
 typedef struct s_point{
 	int		x;
@@ -41,10 +41,10 @@ typedef struct s_next_block{
 }	t_next_block;
 
 typedef struct s_data{
-	void 			*mlx_ptr;
-	void 			*mlx_win;
-	void 			*img;
-	char 			*addr;
+	void			*mlx_ptr;
+	void			*mlx_win;
+	void			*img;
+	char			*addr;
 	char			*map_str;
 	char			**map;
 	char			*arrows;
@@ -60,10 +60,10 @@ typedef struct s_data{
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
-	int 			widht;
-	int 			height;
-	int				X_block;
-	int				Y_block;
+	int				widht;
+	int				height;
+	int				x_block;
+	int				y_block;
 	int				x;
 	int				y;
 	int				person;
@@ -72,6 +72,7 @@ typedef struct s_data{
 	int				enimy;
 	int				box;
 	int				z;
+	int				moves;
 }	t_data;
 
 //	LONG_C
